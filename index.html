@@ -18,6 +18,12 @@ nav{position:sticky;top:0;z-index:100;background:var(--ink);border-bottom:4px so
 .nav-brand{font-family:"Bebas Neue",sans-serif;font-size:1.2rem;letter-spacing:.14em;color:var(--paper);text-decoration:none;display:flex;align-items:center;padding:0 2rem;border-right:2px solid rgba(255,255,255,.08);cursor:pointer;}
 .nav-brand span{color:var(--red);}
 .nav-links{display:flex;}
+.hamburger{display:none;background:none;border:none;cursor:pointer;padding:0 1.4rem;height:52px;flex-direction:column;justify-content:center;gap:5px;}
+.hamburger span{display:block;width:20px;height:2px;background:var(--paper);transition:all .2s;}
+.mobile-menu{display:none;background:var(--ink);border-bottom:3px solid var(--red);flex-direction:column;}
+.mobile-menu.open{display:flex;}
+.mobile-menu a{font-family:"Teko",sans-serif;font-size:1rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.6);padding:.85rem 1.8rem;border-bottom:1px solid rgba(255,255,255,.06);cursor:pointer;transition:color .15s,background .15s;}
+.mobile-menu a:hover,.mobile-menu a.active{color:var(--red);background:rgba(255,255,255,.03);}
 .nav-link{font-family:"Teko",sans-serif;font-size:.95rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;text-decoration:none;color:rgba(255,255,255,.45);display:flex;align-items:center;padding:0 1.4rem;border-right:1px solid rgba(255,255,255,.06);transition:color .15s,background .15s;cursor:pointer;}
 .nav-link:hover{color:var(--paper);background:rgba(255,255,255,.05);}
 .nav-link.active{color:var(--red);}
@@ -193,6 +199,10 @@ footer{background:var(--ink);border-top:4px solid var(--red);padding:1rem 3.5rem
 
 @media(max-width:900px){
   .nav-links{display:none;}
+  .hamburger{display:flex;}
+  .contact-layout{grid-template-columns:1fr;}
+  .contact-left{border-right:none;border-bottom:3px solid var(--red);}
+  .c-value{font-size:.82rem;word-break:break-all;}
   .manga-frame{margin:.8rem;}
   .recruiter-bar{flex-direction:column;align-items:flex-start;gap:.7rem;}
   .hero-panel,.about-layout,.contact-layout{grid-template-columns:1fr;}
@@ -227,7 +237,16 @@ footer{background:var(--ink);border-top:4px solid var(--red);padding:1rem 3.5rem
     <a class="nav-link" data-page="contact">Contact</a>
   </div>
   <a class="nav-cta" data-page="contact">[ Hire Me ]</a>
+  <button class="hamburger" id="hamburger" aria-label="Open menu">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
+<div class="mobile-menu" id="mobile-menu">
+  <a data-page="home">Home</a>
+  <a data-page="games">Games</a>
+  <a data-page="about">About</a>
+  <a data-page="contact">Contact</a>
+</div>
 
 <div class="manga-frame">
 
@@ -353,10 +372,7 @@ footer{background:var(--ink);border-top:4px solid var(--red);padding:1rem 3.5rem
 
   <div class="games-grid">
     <div class="game-card reveal">
-      <div class="game-img-placeholder" style="background:linear-gradient(135deg,#1a0800,#3d1200,#1a0800);">
-        <span class="gip-icon">🎮</span>
-        <span class="gip-label">Add MK1 screenshot</span>
-      </div>
+      <div class="game-img-placeholder" style="background:linear-gradient(135deg,#1a0800,#3d1200,#1a0800);"><span class="gip-icon">🎮</span><span class="gip-label">Add MK1 screenshot</span></div>
       <div class="game-card-body">
         <div class="gc-ghost" aria-hidden="true">MK1</div>
         <div class="gc-byline"><span>NetherRealm / WB Games</span><span class="gc-year">2023</span></div>
@@ -368,10 +384,7 @@ footer{background:var(--ink);border-top:4px solid var(--red);padding:1rem 3.5rem
       </div>
     </div>
     <div class="game-card reveal">
-      <div class="game-img-placeholder" style="background:linear-gradient(135deg,#0d0d1a,#1a0d2e,#0d0d1a);">
-        <span class="gip-icon">🎮</span>
-        <span class="gip-label">Add MK: Onslaught screenshot</span>
-      </div>
+      <div class="game-img-placeholder" style="background:linear-gradient(135deg,#0d0d1a,#1a0d2e,#0d0d1a);"><span class="gip-icon">🎮</span><span class="gip-label">Add MK: Onslaught screenshot</span></div>
       <div class="game-card-body">
         <div class="gc-ghost" aria-hidden="true">MKO</div>
         <div class="gc-byline"><span>NetherRealm Studios</span><span class="gc-year">2023</span></div>
@@ -383,10 +396,7 @@ footer{background:var(--ink);border-top:4px solid var(--red);padding:1rem 3.5rem
       </div>
     </div>
     <div class="game-card reveal">
-      <div class="game-img-placeholder" style="background:linear-gradient(135deg,#1a0500,#2e0d00,#1a0500);">
-        <span class="gip-icon">🎮</span>
-        <span class="gip-label">Add MK Mobile screenshot</span>
-      </div>
+      <div class="game-img-placeholder" style="background:linear-gradient(135deg,#1a0500,#2e0d00,#1a0500);"><span class="gip-icon">🎮</span><span class="gip-label">Add MK Mobile screenshot</span></div>
       <div class="game-card-body">
         <div class="gc-ghost" aria-hidden="true">MKM</div>
         <div class="gc-byline"><span>NetherRealm Studios</span><span class="gc-year">2019&ndash;2022</span></div>
@@ -398,10 +408,7 @@ footer{background:var(--ink);border-top:4px solid var(--red);padding:1rem 3.5rem
       </div>
     </div>
     <div class="game-card reveal">
-      <div class="game-img-placeholder" style="background:linear-gradient(135deg,#0a0e1a,#0d1a2e,#0a0e1a);">
-        <span class="gip-icon">🎮</span>
-        <span class="gip-label">Add Injustice 2 screenshot</span>
-      </div>
+      <div class="game-img-placeholder" style="background:linear-gradient(135deg,#0a0e1a,#0d1a2e,#0a0e1a);"><span class="gip-icon">🎮</span><span class="gip-label">Add Injustice 2 screenshot</span></div>
       <div class="game-card-body">
         <div class="gc-ghost" aria-hidden="true">I2</div>
         <div class="gc-byline"><span>NetherRealm Studios</span><span class="gc-year">2019&ndash;2022</span></div>
@@ -413,10 +420,7 @@ footer{background:var(--ink);border-top:4px solid var(--red);padding:1rem 3.5rem
       </div>
     </div>
     <div class="game-card reveal">
-      <div class="game-img-placeholder" style="background:linear-gradient(135deg,#0d0a05,#1a1305,#0d0a05);">
-        <span class="gip-icon">🎮</span>
-        <span class="gip-label">Add Mafia III screenshot</span>
-      </div>
+      <div class="game-img-placeholder" style="background:linear-gradient(135deg,#0d0a05,#1a1305,#0d0a05);"><span class="gip-icon">🎮</span><span class="gip-label">Add Mafia III screenshot</span></div>
       <div class="game-card-body">
         <div class="gc-ghost" aria-hidden="true">M3</div>
         <div class="gc-byline"><span>Hangar 13 / 2K Games</span><span class="gc-year">2016&ndash;2017</span></div>
@@ -428,10 +432,7 @@ footer{background:var(--ink);border-top:4px solid var(--red);padding:1rem 3.5rem
       </div>
     </div>
     <div class="game-card reveal">
-      <div class="game-img-placeholder" style="background:linear-gradient(135deg,#0a0a0a,#1a1a1a,#0a0a0a);">
-        <span class="gip-icon">🎮</span>
-        <span class="gip-label">Add Batman Telltale screenshot</span>
-      </div>
+      <div class="game-img-placeholder" style="background:linear-gradient(135deg,#0a0a0a,#1a1a1a,#0a0a0a);"><span class="gip-icon">🎮</span><span class="gip-label">Add Batman Telltale screenshot</span></div>
       <div class="game-card-body">
         <div class="gc-ghost" aria-hidden="true">BM</div>
         <div class="gc-byline"><span>Telltale Games</span><span class="gc-year">2017</span></div>
@@ -443,10 +444,7 @@ footer{background:var(--ink);border-top:4px solid var(--red);padding:1rem 3.5rem
       </div>
     </div>
     <div class="game-card reveal">
-      <div class="game-img-placeholder" style="background:linear-gradient(135deg,#0a1a05,#0d2e0a,#0a1a05);">
-        <span class="gip-icon">🎮</span>
-        <span class="gip-label">Add Minecraft Story Mode screenshot</span>
-      </div>
+      <div class="game-img-placeholder" style="background:linear-gradient(135deg,#0a1a05,#0d2e0a,#0a1a05);"><span class="gip-icon">🎮</span><span class="gip-label">Add Minecraft Story Mode screenshot</span></div>
       <div class="game-card-body">
         <div class="gc-ghost" aria-hidden="true">MC</div>
         <div class="gc-byline"><span>Telltale Games</span><span class="gc-year">2017</span></div>
@@ -458,10 +456,7 @@ footer{background:var(--ink);border-top:4px solid var(--red);padding:1rem 3.5rem
       </div>
     </div>
     <div class="game-card reveal">
-      <div class="game-img-placeholder" style="background:linear-gradient(135deg,#1a0f05,#2e1f0a,#1a0f05);">
-        <span class="gip-icon">🎮</span>
-        <span class="gip-label">Add Design Home screenshot</span>
-      </div>
+      <div class="game-img-placeholder" style="background:linear-gradient(135deg,#1a0f05,#2e1f0a,#1a0f05);"><span class="gip-icon">🎮</span><span class="gip-label">Add Design Home screenshot</span></div>
       <div class="game-card-body">
         <div class="gc-ghost" aria-hidden="true">DH</div>
         <div class="gc-byline"><span>Crowdstar / Glu Mobile</span><span class="gc-year">2018</span></div>
@@ -616,9 +611,18 @@ footer{background:var(--ink);border-top:4px solid var(--red);padding:1rem 3.5rem
 </footer>
 
 <script>
+// Hamburger toggle
+const hamburger = document.getElementById('hamburger');
+const mobileMenu = document.getElementById('mobile-menu');
+hamburger.addEventListener('click', () => {
+  mobileMenu.classList.toggle('open');
+});
+
 function goTo(pageId) {
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
   document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+  document.querySelectorAll('.mobile-menu a').forEach(l => l.classList.remove('active'));
+  mobileMenu.classList.remove('open');
   const page = document.getElementById('page-' + pageId);
   if (page) {
     page.classList.add('active');
@@ -632,6 +636,8 @@ function goTo(pageId) {
   }
   const link = document.querySelector('.nav-link[data-page="' + pageId + '"]');
   if (link) link.classList.add('active');
+  const mobileLink = document.querySelector('.mobile-menu a[data-page="' + pageId + '"]');
+  if (mobileLink) mobileLink.classList.add('active');
 }
 
 document.querySelectorAll('[data-page]').forEach(el => {
