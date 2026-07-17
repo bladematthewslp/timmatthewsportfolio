@@ -1,3 +1,4 @@
+
 :root{--paper:#FFF9F0;--ink:#0F0F0F;--red:#CC0000;--red2:#A80000;--muted:#555;--gray:#AAA;--rule:rgba(15,15,15,0.15);}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
 html{scroll-behavior:smooth;}
